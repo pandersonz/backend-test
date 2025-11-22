@@ -6,6 +6,7 @@ const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
 const useragent = require("express-useragent");
 const http = require("http");
+const { runQuery } = require("./database/utils.js");
 
 const app = express();
 const server = http.createServer(app);
@@ -25,7 +26,7 @@ app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 
 module.exports.start = async () => {
   try {
-    server.listen(8930, () => {
+    server.listen(8930, async () => {
       console.info(`server running at port: ${8930}`);
     });
   } catch (e) {
