@@ -6,9 +6,9 @@ const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
 const useragent = require("express-useragent");
 const http = require("http");
-const { runQuery } = require("./database/utils.js");
 const ProductoRouter = require("./producto/producto.router.js");
 const ClienteRouter = require("./cliente/cliente.router.js");
+const EmpleadoRouter = require("./empleado/empleado.router.js");
 
 const app = express();
 const server = http.createServer(app);
@@ -27,6 +27,7 @@ app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 app.use("/api/producto", ProductoRouter);
 app.use("/api/cliente", ClienteRouter);
+app.use("/api/empleado", EmpleadoRouter);
 
 module.exports.start = async () => {
   try {
