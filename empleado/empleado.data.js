@@ -13,12 +13,18 @@ class EmpleadoData {
 
   static crearEmpleado = async (data) => {
     try {
-      const resp = await runQuery(`INSERT INTO empleado VALUES (0,?,?,?,?)`, [
-        data.nombre,
-        data.ci,
-        data.celular,
-        data.cargo,
-      ]);
+      const resp = await runQuery(
+        `INSERT INTO empleado VALUES (0,?,?,?,?,?,?,?)`,
+        [
+          data.nombre,
+          data.ci,
+          data.celular,
+          data.cargo,
+          data.direccionDomicilio,
+          data.correo,
+          data.estadoCivil,
+        ]
+      );
       return resp;
     } catch (err) {
       console.log("crearEmpleado err");
@@ -29,8 +35,17 @@ class EmpleadoData {
   static modificarEmpleado = async (data) => {
     try {
       const resp = await runQuery(
-        `UPDATE empleado SET nombre = ?, ci=?, celular=?, cargo=? WHERE id=?`,
-        [data.nombre, data.ci, data.celular, data.cargo, data.id]
+        `UPDATE empleado SET nombre = ?, ci=?, celular=?, cargo=?, direccionDomicilio=?, correo=?, estadoCivil=? WHERE id=?`,
+        [
+          data.nombre,
+          data.ci,
+          data.celular,
+          data.cargo,
+          data.direccionDomicilio,
+          data.correo,
+          data.estadoCivil,
+          data.id,
+        ]
       );
       return resp;
     } catch (err) {

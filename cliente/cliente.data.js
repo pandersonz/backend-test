@@ -13,12 +13,18 @@ class ClienteData {
 
   static crearCliente = async (data) => {
     try {
-      const resp = await runQuery(`INSERT INTO cliente VALUES (0,?,?,?,?)`, [
-        data.nombre,
-        data.ci,
-        data.celular,
-        data.nit,
-      ]);
+      const resp = await runQuery(
+        `INSERT INTO cliente VALUES (0,?,?,?,?,?,?,?)`,
+        [
+          data.nombre,
+          data.ci,
+          data.celular,
+          data.nit,
+          data.correo,
+          data.tipoCliente,
+          data.direccion,
+        ]
+      );
       return resp;
     } catch (err) {
       console.log("crearCliente err");
@@ -29,8 +35,17 @@ class ClienteData {
   static modificarCliente = async (data) => {
     try {
       const resp = await runQuery(
-        `UPDATE cliente SET nombre = ?, ci=?, celular=?, nit=? WHERE id=?`,
-        [data.nombre, data.ci, data.celular, data.nit, data.id]
+        `UPDATE cliente SET nombre = ?, ci=?, celular=?, nit=?, correo=?, tipoCliente=?, direccion=? WHERE id=?`,
+        [
+          data.nombre,
+          data.ci,
+          data.celular,
+          data.nit,
+          data.correo,
+          data.tipoCliente,
+          data.direccion,
+          data.id,
+        ]
       );
       return resp;
     } catch (err) {

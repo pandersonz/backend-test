@@ -13,11 +13,18 @@ class ProductoData {
 
   static crearProducto = async (data) => {
     try {
-      const resp = await runQuery(`INSERT INTO producto VALUES (0,?,?,?)`, [
-        data.nombre,
-        data.cantidad,
-        data.precio,
-      ]);
+      const resp = await runQuery(
+        `INSERT INTO producto VALUES (0,?,?,?,?,?,?,?)`,
+        [
+          data.nombre,
+          data.cantidad,
+          data.precio,
+          data.sku,
+          data.detalle,
+          data.categoria,
+          data.tipoEmpaque,
+        ]
+      );
       return resp;
     } catch (err) {
       console.log("crearProducto err");
@@ -28,8 +35,17 @@ class ProductoData {
   static modificarProducto = async (data) => {
     try {
       const resp = await runQuery(
-        `UPDATE producto SET nombre = ?, cantidad=?, precio=? WHERE id=?`,
-        [data.nombre, data.cantidad, data.precio, data.id]
+        `UPDATE producto SET nombre = ?, cantidad=?, precio=?, sku=?, detalle=?, categoria=?, tipoEmpaque=? WHERE id=?`,
+        [
+          data.nombre,
+          data.cantidad,
+          data.precio,
+          data.sku,
+          data.detalle,
+          data.categoria,
+          data.tipoEmpaque,
+          data.id,
+        ]
       );
       return resp;
     } catch (err) {
