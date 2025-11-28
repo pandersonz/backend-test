@@ -18,7 +18,7 @@ app.use(helmet());
 app.disable("x-powered-by");
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://localhost:3000"],
+    origin: "*",
   })
 );
 app.use(cookieParser());
