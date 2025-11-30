@@ -20,7 +20,7 @@ describe("validarCliente", () => {
 
   test("devuelve error cuando falta el nombre", () => {
     const data = {
-      nombre: "pedro",
+      nombre: "",
       ci: "123456",
       celular: "7777777",
       nit: "111111",
